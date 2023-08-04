@@ -125,6 +125,9 @@ public class Employee {
 		this.annualSalary = annualSalary;
 	}
 	
+	public Employee() {
+		
+	}
 	
 	//Constructor
 	public Employee(String firstName, String lastName, String dob, String contactNumber, String address,
