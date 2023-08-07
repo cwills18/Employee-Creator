@@ -16,11 +16,10 @@ public class EmployeeController {
 
 	// post
 	@PostMapping
-	public String addEmployee(@RequestBody AddEmployeeDTO data) {
+	public Employee addEmployee(@RequestBody AddEmployeeDTO data) {
 		//forward the request body to the service layer
 		//aka call the method from the service layer that does all the tasks
-		this.service.add(data);
-		return "Employee added";
+		return this.service.add(data);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package io.nology.employeecreator.employee;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -8,18 +9,21 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class EmployeeService {
 	
+	@Autowired
+	private EmployeeRepository repository;
+	
 	
 	public Employee add(AddEmployeeDTO data) {
 		//turn DTO into an Employee
-		String firstName = data.getFirstName();
-		String lastName = data.getLastName();
-		String dob = data.getDob();
-		String contactNumber = data.getContactNumber();
-		String address = data.getAddress();
-		String employmentStatus = data.getEmploymentStatus();
+		String firstName = data.getFirstName().trim();
+		String lastName = data.getLastName().trim();
+		String dob = data.getDob().trim();
+		String contactNumber = data.getContactNumber().trim();
+		String address = data.getAddress().trim();
+		String employmentStatus = data.getEmploymentStatus().trim();
 		boolean fullTime = data.isFullTime();
 		Double hoursPerWeek = data.getHoursPerWeek();
-		String startDate = data.getStartDate();
+		String startDate = data.getStartDate().trim();
 		Integer annualSalary = data.getAnnualSalary();
 
 		String today = java.time.LocalDate.now().toString();
@@ -39,13 +43,11 @@ public class EmployeeService {
 		employee.setFinishDate(null);
 		employee.setLengthOfService(lengthOfService);
 		employee.setAnnualSalary(annualSalary);
-	    
-		
 		
 		//call the repository layer to save that prepared Employee in the database
-		
 		//return it
-		return null;
+		return this.repository.save(employee);
+		
 	}
 	
 	public static Double calculateYearDiff(String startDate, String currentDate){
