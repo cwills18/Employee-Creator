@@ -1,5 +1,7 @@
 package io.nology.employeecreator.employee;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,8 +16,8 @@ import jakarta.persistence.Id;
 public class Employee {
 	
 	//this tag is used to identify the ID
-	@Id
 	//this tag is used to generate the id key
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	@Column
@@ -24,7 +26,7 @@ public class Employee {
 	String lastName;
 	@Column
 	String dob;
-	//use format DD/MM/YYYY
+	//use format YYYY-MM-DD for all dates
 	@Column
 	String contactNumber;
 	@Column
