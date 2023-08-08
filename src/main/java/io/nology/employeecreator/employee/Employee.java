@@ -26,7 +26,7 @@ public class Employee {
 	String lastName;
 	@Column
 	String dob;
-	//use format YYYY-MM-DD for all dates
+	//use format YYYY-MM-DD or YYYY/MM/DD for all dates
 	@Column
 	String contactNumber;
 	@Column

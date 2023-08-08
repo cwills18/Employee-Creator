@@ -1,16 +1,44 @@
 package io.nology.employeecreator.employee;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class AddEmployeeDTO {
 
+	@Pattern(regexp = "^[a-zA-Z-]{2,}$",
+            message = "names should contain at least two characters with no special characters other than hyphens")
 	String firstName;
+	
+	@Pattern(regexp = "^[a-zA-Z-]{2,}$",
+            message = "names should contain at least two characters with no special characters other than hyphens")
 	String lastName;
+	
+	@Pattern(regexp = "^[12]{1}[0-9]{3}[-/]{1}(1[012]|0[1-9])[-/]{1}(3[01]|[12][0-9]|0[1-9])$",
+            message = "Date of births must be entered in the format YYYY/MM/DD and must be in the last 1000 years.")
 	String dob;
+	
+	@Pattern(regexp = "^[+]{0,1}[0-9]{0,3}[0-9]{8,12}$",
+            message = "phone numbers should contain only digits without dashes. Country codes with a + symbol are optional.")
 	String contactNumber;
+	
+	@Pattern(regexp = "^[a-zA-Z0-9,-/\s]{15,}$",
+            message = "addresses should contain only alphanumeric characters, digits and the characters , / and -. They should be a minimum of 15 characters.")
 	String address;
+	
+	@NotBlank
 	String employmentStatus;
+	
+	@NotNull
 	boolean fullTime;
+	
+	@NotNull
 	Double hoursPerWeek;
+	
+	@NotBlank
 	String startDate;
+	
+	@NotNull
 	Integer annualSalary;
 	
 	public String getFirstName() {
