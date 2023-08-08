@@ -1,5 +1,8 @@
 package io.nology.employeecreator.employee;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +51,24 @@ public class EmployeeService {
 		//return it
 		return this.repository.save(employee);
 		
+	}
+	
+	public List<Employee> getAll(){
+		return this.repository.findAll();
+	}
+	
+	public Optional<Employee> getEmployeeById(Long id) {
+		return this.repository.findById(id);
+	}
+
+	public boolean deleteEmployeeById(Long id) {
+		Optional<Employee> thisEmployee = this.getEmployeeById(id);
+		if (thisEmployee.isPresent()) {
+			this.repository.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public static Double calculateYearDiff(String startDate, String currentDate){
